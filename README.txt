@@ -29,13 +29,13 @@ Password: sadeka
 Role: Blood Bank
 
 Donor:
-Email: donor1@gmail.com
-Password: donor123@
+Email: donor2@gmail.com
+Password: donor2123
 Role: Donor
 
 Recipient:
-Email: recipient1@gmail.com
-Password: recipient123@
+Email: recipient2@gmail.com
+Password: recipient2123
 Role: Recipient
 
 Note:
