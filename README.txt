@@ -30,12 +30,12 @@ Role: Blood Bank
 
 Donor:
 Email: donor1@gmail.com
-Password: donor123
+Password: donor123@
 Role: Donor
 
 Recipient:
 Email: recipient1@gmail.com
-Password: recipient123
+Password: recipient123@
 Role: Recipient
 
 Note:
