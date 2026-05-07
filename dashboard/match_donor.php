@@ -130,7 +130,7 @@ while($donor = mysqli_fetch_assoc($all_donors_result)){
                             <?php if($donor['eligibility']['eligible']){ ?>
                                 <a class="link" href="select_donor.php?request_id=<?php echo $request['id']; ?>&donor_id=<?php echo $donor['id']; ?>" onclick="return confirm('Match this donor with the request?');">Select</a>
                             <?php } else { ?>
-                                <span style="color:#999;">Unavailable</span>
+                                <span class="small-muted">Unavailable</span>
                             <?php } ?>
                         </td>
                     </tr>
