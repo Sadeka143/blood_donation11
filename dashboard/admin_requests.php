@@ -202,29 +202,31 @@ $result = mysqli_query($conn, $sql);
             </div>
 
             <div class="filter-actions-row">
-    <button class="btn btn-primary" type="submit">Apply</button>
-    <a class="btn btn-secondary" href="admin_requests.php">Reset</a>
-
-    <!-- Export all requests -->
-    <a class="btn btn-primary" href="export_requests.php">Export Requests CSV</a>
-
-    <!-- Export requests using current filter values -->
-    <a class="btn btn-primary" href="export_requests_filtered.php?<?php echo http_build_query([
-        'recipient_search' => $recipient_search,
-        'blood_group' => $blood_group,
-        'request_status' => $request_status,
-        'urgency' => $urgency,
-        'fulfillment_source' => $fulfillment_source,
-        'location_search' => $location_search,
-        'date_from' => $date_from,
-        'date_to' => $date_to
-    ]); ?>">Export Filtered CSV</a>
-</div>
+                <button class="btn btn-primary" type="submit">Apply</button>
+                <a class="btn btn-secondary" href="admin_requests.php">Reset</a>
+            </div>
         </form>
     </div>
 
     <div class="card">
+    <div class="admin-list-header">
         <h3>Request List</h3>
+
+        <div class="admin-export-actions">
+            <a class="btn btn-primary" href="export_requests.php">Export Requests CSV</a>
+
+            <a class="btn btn-primary" href="export_requests_filtered.php?<?php echo http_build_query([
+                'recipient_search' => $recipient_search,
+                'blood_group' => $blood_group,
+                'request_status' => $request_status,
+                'urgency' => $urgency,
+                'fulfillment_source' => $fulfillment_source,
+                'location_search' => $location_search,
+                'date_from' => $date_from,
+                'date_to' => $date_to
+            ]); ?>">Export Filtered CSV</a>
+        </div>
+    </div>
 
         <div class="table-scroll-admin">
             <?php if(mysqli_num_rows($result) > 0){ ?>
