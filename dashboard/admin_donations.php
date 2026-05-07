@@ -176,7 +176,22 @@ $result = mysqli_query($conn, $sql);
     </div>
 
     <div class="card">
+    <div class="admin-list-header">
         <h3>Donation List</h3>
+
+        <div class="admin-export-actions">
+            <a class="btn btn-primary" href="export_donations.php">Export Donations CSV</a>
+
+            <a class="btn btn-primary" href="export_donations_filtered.php?<?php echo http_build_query([
+                'donor_search' => $donor_search,
+                'blood_group' => $blood_group,
+                'donation_type' => $donation_type,
+                'status' => $status_filter,
+                'date_from' => $date_from,
+                'date_to' => $date_to
+            ]); ?>">Export Filtered CSV</a>
+        </div>
+    </div>
 
         <div class="table-scroll-admin">
             <?php if(mysqli_num_rows($result) > 0){ ?>
