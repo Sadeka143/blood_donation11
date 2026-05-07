@@ -220,7 +220,7 @@ $total_stock_requests = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) 
             </div>
         </a>
     </div>
-
+    
     <div class="summary-grid">
         <div class="summary-card">
             <h3>Request Oversight</h3>

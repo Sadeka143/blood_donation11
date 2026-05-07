@@ -179,9 +179,20 @@ if(isset($_GET['result'])){
             </div>
 
             <div class="filter-actions-row">
-                <button class="btn btn-primary" type="submit">Apply</button>
-                <a class="btn btn-secondary" href="admin_users.php">Reset</a>
-            </div>
+    <button class="btn btn-primary" type="submit">Apply</button>
+    <a class="btn btn-secondary" href="admin_users.php">Reset</a>
+
+    <!-- Export all users -->
+    <a class="btn btn-primary" href="export_users.php">Export Users CSV</a>
+
+    <!-- Export users using current filter values -->
+    <a class="btn btn-primary" href="export_users_filtered.php?<?php echo http_build_query([
+        'user_search' => $search,
+        'role' => $role_filter,
+        'blood_group' => $blood_group,
+        'city' => $city
+    ]); ?>">Export Filtered CSV</a>
+</div>
         </form>
     </div>
 
