@@ -208,7 +208,24 @@ $result = mysqli_query($conn, $sql);
     </div>
 
     <div class="card">
+    <div class="admin-list-header">
         <h3>Appointments List</h3>
+
+        <div class="admin-export-actions">
+            <a class="btn btn-primary" href="export_appointments_filtered.php">Export Appointments CSV</a>
+
+            <a class="btn btn-primary" href="export_appointments_filtered.php?<?php echo http_build_query([
+                'recipient_search' => $recipient_search,
+                'donor_search' => $donor_search,
+                'blood_group' => $blood_group,
+                'status' => $status_filter,
+                'appointment_type' => $appointment_type,
+                'location_search' => $location_search,
+                'date_from' => $date_from,
+                'date_to' => $date_to
+            ]); ?>">Export Filtered CSV</a>
+        </div>
+    </div>
 
         <div class="table-scroll-admin">
         <?php if(mysqli_num_rows($result) > 0){ ?>
