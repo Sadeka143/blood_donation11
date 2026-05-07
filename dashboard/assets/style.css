@@ -4193,3 +4193,23 @@ background-image:
     width:100%;
   }
 }
+/* Admin list header with export buttons */
+.admin-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.admin-list-header h3 {
+    margin: 0;
+}
+
+.admin-export-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
