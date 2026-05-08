@@ -26,9 +26,15 @@ $sql = "
     SELECT 
         d.*,
         u.name AS donor_name,
-        r.blood_group,
-        r.location,
-        r.quantity,
+        COALESCE(r.blood_group, u.blood_group) AS blood_group,
+        CASE 
+            WHEN d.donation_type = 'stock_donation' THEN 'Branch Stock Donation'
+            ELSE r.location
+        END AS location,
+        CASE 
+            WHEN d.donation_type = 'stock_donation' THEN 1
+            ELSE r.quantity
+        END AS quantity,
         b.branch_name,
         bb.name AS blood_bank_name,
         bb.institution_name
@@ -45,7 +51,7 @@ if($donor_search_safe !== ""){
 }
 if($blood_group !== "all"){
     $group_safe = mysqli_real_escape_string($conn, $blood_group);
-    $sql .= " AND r.blood_group = '$group_safe'";
+    $sql .= " AND COALESCE(r.blood_group, u.blood_group) = '$group_safe'";
 }
 if($donation_type !== "all"){
     $type_safe = mysqli_real_escape_string($conn, $donation_type);

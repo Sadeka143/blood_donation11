@@ -35,7 +35,7 @@ fputcsv($output, [
     'Blood Group',
     'Branch',
     'Blood Bank',
-    'Request Location',
+    'Location',
     'Quantity',
     'Scheduled Date',
     'Completed At',
@@ -49,9 +49,15 @@ $sql = "
         d.*,
         donor.name AS donor_name,
         donor.email AS donor_email,
-        r.blood_group,
-        r.location,
-        r.quantity,
+        COALESCE(r.blood_group, donor.blood_group) AS blood_group,
+        CASE 
+            WHEN d.donation_type = 'stock_donation' THEN 'Branch Stock Donation'
+            ELSE r.location
+        END AS location,
+        CASE 
+            WHEN d.donation_type = 'stock_donation' THEN 1
+            ELSE r.quantity
+        END AS quantity,
         b.branch_name,
         bb.name AS blood_bank_name,
         bb.institution_name
@@ -70,7 +76,7 @@ if($donor_search !== ""){
 
 if($blood_group !== "all"){
     $group_safe = mysqli_real_escape_string($conn, $blood_group);
-    $sql .= " AND r.blood_group = '$group_safe'";
+    $sql .= " AND COALESCE(r.blood_group, donor.blood_group) = '$group_safe'";
 }
 
 if($donation_type !== "all"){

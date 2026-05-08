@@ -31,14 +31,21 @@ $sql = "
         d.completed_at,
         d.notes,
         d.status AS donation_status,
-        r.blood_group,
-        r.location,
-        r.quantity,
+        COALESCE(r.blood_group, donor.blood_group) AS blood_group,
+        CASE 
+            WHEN d.donation_type = 'stock_donation' THEN 'Branch Stock Donation'
+            ELSE r.location
+        END AS location,
+        CASE 
+            WHEN d.donation_type = 'stock_donation' THEN 1
+            ELSE r.quantity
+        END AS quantity,
         r.urgency,
         b.branch_name,
         bb.name AS blood_bank_name,
         bb.institution_name
     FROM donations d
+    JOIN users donor ON d.donor_id = donor.id
     LEFT JOIN blood_requests r ON d.request_id = r.id
     LEFT JOIN branches b ON d.branch_id = b.id
     LEFT JOIN users bb ON d.blood_bank_id = bb.id
